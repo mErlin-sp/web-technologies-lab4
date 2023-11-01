@@ -12,8 +12,10 @@ $(document).ready(function () {
 })
 
 socket.on('chat message', function (message) {
-    $('#messages').append(`
-        <div class="row">
+    let messages = $('#messages')
+    let color = (messages.children().length % 2 === 0) ? 'blue' : 'yellow';
+    messages.append(`
+        <div class="row ${color}">
             <h1>${message.name}: ${message.msg}</h1>
         </div>
 `);

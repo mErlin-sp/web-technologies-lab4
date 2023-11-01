@@ -38,13 +38,14 @@ a {
 }
 
 .row {
-    width: 90%;
     height: 50px;
-    background-color: lightcoral;
-    margin: 10px 5%;
     padding: 10px;
 }
 
-.row h1 {
-    /*margin: 20px;*/
+.blue {
+    background-color: lightcyan;
+}
+
+.yellow {
+    background-color: lightyellow;
 }
