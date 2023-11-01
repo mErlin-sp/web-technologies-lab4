@@ -1,5 +1,12 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+    h1= title
+    p Welcome to #{title}
+
+block footer
+    div(id='footer')
+        input(type='text' id='name' placeholder='Name')
+        input(type='text' id='message' placeholder='Message')
+        input(type='button' id='send' value='Send')
+
