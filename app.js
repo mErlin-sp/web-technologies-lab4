@@ -8,7 +8,6 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 const debug = require("debug");
 
 const app = express();
@@ -26,7 +25,6 @@ app.use(cookieParser());
 app.use(require('express').static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -34,7 +32,7 @@ app.use(function (req, res, next) {
 });
 
 // error handler
-app.use(function (err, req, res, next) {
+app.use(function (err, req, res) {
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -56,22 +54,6 @@ io.on('connection', (socket) => {
         console.log('User disconnected');
     });
 });
-
-function normalizePort(val) {
-    var port = parseInt(val, 10);
-
-    if (isNaN(port)) {
-        // named pipe
-        return val;
-    }
-
-    if (port >= 0) {
-        // port number
-        return port;
-    }
-
-    return false;
-}
 
 function onError(error) {
     if (error.syscall !== 'listen') {
@@ -105,7 +87,7 @@ function onListening() {
     debug('Listening on ' + bind);
 }
 
-const port = normalizePort(process.env.PORT || '3000');
+const port = process.env.PORT || 3001;
 app.set('port', port);
 
 server.listen(port, () => {
